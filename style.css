@@ -75,12 +75,15 @@ border-radius:0 6px 6px 0;
 }
 
 /* BANNER */
-
 .banner {
     width: 100%;
-    height: 60vh; /* Laptop/Desktop ke liye thoda chota height */
+    /* Mobile ke liye height kam rakhein */
+    height: 300px; 
     background-image: url('banner.jpg');
-    background-size: cover;
+    
+    /* 'contain' use karein taaki puri image dikhe */
+    background-size: contain; 
+    
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
@@ -94,12 +97,14 @@ border-radius:0 6px 6px 0;
 }
 
 /* Mobile Screens ke liye khas settings */
+/* Mobile ke liye alag image */
 @media (max-width: 600px) {
     .banner {
-        height: 300px; /* Mobile par fixed height de rahe hain */
-        padding: 10px;
+        background-image: url('banner-mobile.jpg'); /* Mobile wali image */
+        background-size: cover;
     }
 }
+
 .shop-now-btn{
 display:inline-block;
 padding:14px 30px;
