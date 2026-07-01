@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="princess collection.style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Princess Collection</title>
+  <style>
+/* PRODUCT GRID */
+
+#product-list{
+    display:grid;
+    grid-template-columns:repeat(3, 300px);
+    justify-content:center;
+    gap:35px;
+    padding:30px;
+}
+
+/* PRODUCT CARD */
+
+.product-card{
+    width:300px;
+    background:#fff;
+    border:1px solid #e5e5e5;
+    border-radius:12px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+    transition:0.3s ease;
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+}
+
+/* IMAGE */
+
+.product-card img{
+    width:100%;
+    height:180px;
+    object-fit:contain;
+    display:block;
+    margin-bottom:10px;
+}
+
+/* TITLE */
+
+.product-title{
+    font-size:22px;
+    font-weight:600;
+    margin:10px 0 5px;
+}
+
+/* PRICE */
+
+.product-info{
+    margin:5px 0 10px;
+    font-size:18px;
+}
+
+/* SIZE & QTY TEXT */
+
+.product-card p{
+    margin:6px 0;
+}
+
+/* DROPDOWNS */
+
+.product-size,
+.product-qty{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+    border:1px solid #ddd;
+    border-radius:6px;
+    font-size:15px;
+}
+
+/* BUTTON */
+
+.product-card button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:6px;
+    background:#ff9aa2;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.product-card button:hover{
+    background:#ffc1cc;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    #product-list{
+        grid-template-columns:repeat(2, 1fr);
+        gap:15px;
+        padding:15px;
+    }
+
+    .product-card{
+        width:100%;
+        padding:10px;
+    }
+
+    .product-card img{
+        height:120px;
+    }
+
+    .product-title{
+        font-size:14px;
+    }
+
+    .product-info{
+        font-size:14px;
+    }
+
+    .product-size,
+    .product-qty{
+        padding:6px;
+        font-size:12px;
+    }
+
+    .product-card button{
+        padding:10px;
+        font-size:13px;
+    }
+}
+.banner-section{
+text-align:center;
+padding:100px 20px;
+background-image:url('banner3.jpg');
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+color:white;
+text-shadow:2px 2px 6px rgba(0,0,0,0.8);
+}
+
+.banner-section {
+    /* Height ko screen ke hisaab se set karein */
+    height: 80vh; 
+    
+    /* Background ko cover par rakhein taki image stretch na ho */
+    background-size: cover;
+    
+    /* Image ko beech mein rakhein */
+    background-position: center;
+    
+    /* Repeat band karein */
+    background-repeat: no-repeat;
+
+    /* Content ko center mein laane ke liye */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Agar background dark karna ho text dikhane ke liye */
+    background-color: rgba(0,0,0,0.2);
+}
+
+.banner-section h1{
+font-size:3rem;
+margin-bottom:10px;
+}
+
+.banner-section p{
+font-size:1.2rem;
+margin-bottom:20px;
+}
+
+/* Mobile ke liye chhota banner */
+@media (max-width: 768px) {
+    .banner-section {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+<header class="header1">
+    <img src="princess collection.png" alt="Logo" class="logo">
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="princess collection.html">Collection</a></li>
+            <li><a href="princess collection contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="cart-icon" onclick="document.getElementById('order-popup').style.display='block'" style="cursor:pointer; font-size:24px; margin-left:15px;">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count" style="font-size:14px; background:red; color:white; border-radius:50%; padding:2px 6px;">0</span>
+    </div>
+
+    <div class="search-container">
+        <input type="text" placeholder="Search for Dresses..." id="search-input">
+        <button type="submit">Search</button>
+    </div>
+</header>
+
+<section class="collection-banner">
+    <img src="banner3.jpg" alt="Collection Banner" style="width: 100%; border-radius: 15px;">
+</section>
+
+
+<div class="category-filter">
+    <button onclick="filterCategory('all')">🔲 All</button>
+
+<button onclick="filterCategory('top')">👚 Top</button>
+
+<button onclick="filterCategory('pant')">👖 Pant</button>
+
+<button onclick="filterCategory('shirt')">👔 Shirt</button>
+
+<button onclick="filterCategory('kurti')">👗 Kurti</button>
+
+<button onclick="filterCategory('two piece pair')">👗👖 Two Piece Pair</button>
+
+<button onclick="filterCategory('three piece pair')">👗👖🧣 Three Piece Pair</button>
+
+<button onclick="filterCategory('cord set')">👚👖 Cord Set</button>
+
+<button onclick="filterCategory('t-shirt')">👕  T-shirt</button>
+</div>
+
+<main class="product-container" id="product-list"></main>
+
+<script>
+    // --- FILTERS & SEARCH ---
+    function filterCategory(category) {
+        const products = document.getElementsByClassName('product-card');
+        for (let i = 0; i < products.length; i++) {
+            const productCategory = products[i].getAttribute('data-category');
+            if (category === 'all' || (productCategory && productCategory.includes(category))) {
+                products[i].style.display = ""; 
+            } else {
+                products[i].style.display = "none";
+            }
+        }
+    }
+
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', function() {
+            const filter = searchInput.value.toLowerCase();
+            const products = document.getElementsByClassName('product-card');
+            for (let i = 0; i < products.length; i++) {
+                let title = products[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+                products[i].style.display = title.indexOf(filter) > -1 ? "" : "none";
+            }
+        });
+    }
+
+    // --- MODAL & ORDER LOGIC ---
+    function openOrderModal() {
+        document.getElementById('order-popup').style.display = 'none';
+        document.getElementById('order-form-popup').style.display = 'block';
+    }
+
+    function autoOpenForm(buttonElement) {
+        let card = buttonElement.closest('.product-card');
+        window.selectedProduct = {
+            name: card.querySelector('.product-title').innerText,
+            price: card.querySelector('.product-info strong').innerText,
+            size: card.querySelector('.product-size').value,
+            qty: card.querySelector('.product-qty').value
+        };
+        document.getElementById('order-form-popup').style.display = 'block';
+    }
+
+    function confirmOrder(event) {
+        event.preventDefault();
+        const name = document.getElementById('custName').value;
+        const mobile = document.getElementById('custMobile').value;
+        const address = document.getElementById('custAddress').value;
+        const payment = document.getElementById('paymentMethod').value;
+        
+        let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+        let message = "";
+
+        if (cart.length > 0) {
+            let itemsList = cart.map(i => `${i.name} (Qty: ${i.qty})`).join(', ');
+            message = `🛍️ New Cart Order!\n👤 Name: ${name}\n📞 Phone: ${mobile}\n📍 Address: ${address}\n💳 Payment: ${payment}\n📦 Items: ${itemsList}\n💰 Total: ₹${document.getElementById('popup-total').innerText}`;
+            localStorage.removeItem('myCart');
+            updateCartUI();
+        } else if (window.selectedProduct) {
+            message = `🛍️ New Single Order!\nItem: ${window.selectedProduct.name} (Size: ${window.selectedProduct.size}, Qty: ${window.selectedProduct.qty})\nPrice: ${window.selectedProduct.price}\n👤 Name: ${name}\n📞 Phone: ${mobile}\n📍 Address: ${address}\n💳 Payment: ${payment}`;
+        }
+        
+        window.open("https://wa.me/918140652031?text=" + encodeURIComponent(message), '_blank');
+        document.getElementById('order-form-popup').style.display = 'none';
+        window.selectedProduct = null;
+    }
+
+    function addToCart(name, price, imageUrl, element) {
+        let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+        let card = element.closest('.product-card');
+        let qty = parseInt(card.querySelector('.product-qty').value);
+        let cleanPrice = parseInt(price.replace(/[^0-9]/g, ''));
+        
+        cart.push({ name, price: cleanPrice, qty, img: imageUrl });
+        localStorage.setItem('myCart', JSON.stringify(cart));
+        updateCartUI();
+        document.getElementById('order-popup').style.display = 'block';
+    }
+
+    function updateCartUI() {
+        let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+        let container = document.getElementById('cart-list-container');
+        let totalSpan = document.getElementById('popup-total');
+        let cartCount = document.getElementById('cart-count');
+        
+        container.innerHTML = "";
+        let total = 0;
+        if(cartCount) cartCount.innerText = cart.length;
+
+        cart.forEach((item, index) => {
+            total += item.price * item.qty;
+            container.innerHTML += `
+                <div style="display:flex; align-items:center; margin-bottom:10px; border-bottom:1px solid #ccc; padding-bottom:5px;">
+                    <img src="${item.img}" width="50" style="margin-right:10px;">
+                    <div style="flex-grow:1;">
+                        <b>${item.name}</b><br> ₹${item.price} x ${item.qty}
+                    </div>
+                    <button onclick="removeFromCart(${index})" style="background:red; color:white; border:none; padding:5px 10px; cursor:pointer;">&times;</button>
+                </div>`;
+        });
+        totalSpan.innerText = total;
+    }
+
+    function removeFromCart(index) {
+        let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('myCart', JSON.stringify(cart));
+        updateCartUI();
+    }
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
+    import { getFirestore, collection, getDocs, query } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAqCkYfpN1MQzOmDUo76I0tCORQDNJWenw",
+        authDomain: "princess-collection-6adc3.firebaseapp.com",
+        projectId: "princess-collection-6adc3",
+        storageBucket: "princess-collection-6adc3.firebasestorage.app",
+        messagingSenderId: "1058275008919",
+        appId: "1:1058275008919:web:5df86e59d15f2a83ad64d2",
+        measurementId: "G-HGG0W18G3Y"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+    async function loadProducts() {
+        const productList = document.getElementById('product-list');
+        const querySnapshot = await getDocs(query(collection(db, "products")));
+        
+        querySnapshot.forEach((doc) => {
+            const product = doc.data(); 
+            // Agar size field database mein 'size' naam se hai, to product.size use karein
+            let options = product.size ? product.size.split(',').map(s => `<option value="${s.trim()}">${s.trim()}</option>`).join('') : '<option value="N/A">N/A</option>';
+
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.setAttribute('data-category', product.category);
+            card.innerHTML = `
+                <img src="${product.imageUrl}" alt="${product.name}">
+                <h3 class="product-title">${product.name}</h3>
+                <p class="product-info">Price: <strong>${product.price}</strong></p>
+                <p>Size: <select class="product-size">${options}</select></p>
+                <p>Qty: <select class="product-qty"><option>1</option><option>2</option><option>3</option></select></p>
+                <button onclick="autoOpenForm(this)">Buy Now</button>
+                <button onclick="addToCart('${product.name}', '${product.price}', '${product.imageUrl}', this)">Add to Cart</button>
+            `;
+            productList.prepend(card);
+        }); 
+    }
+    loadProducts();
+</script>
+
+<div id="order-popup" class="popup-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:90%; max-width:400px; background:#fff; padding:20px; z-index:9999; border-radius:15px; box-shadow:0 0 15px rgba(0,0,0,0.3);">
+    <span class="close-btn" onclick="document.getElementById('order-popup').style.display='none'" style="float:right; cursor:pointer; font-size:24px;">&times;</span>
+    <h3>Aapka Cart</h3>
+    <div id="cart-list-container"></div>
+    <p><strong>Total: ₹<span id="popup-total">0</span></strong></p>
+    <button onclick="openOrderModal()" style="width:100%; padding:12px; background:#ff9aa2; color:white; border:none; border-radius:8px; cursor:pointer;">Buy Now</button>
+</div>
+
+<div id="order-form-popup" class="popup-modal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:90%; max-width:400px; background:#fff; padding:20px; z-index:9999; border-radius:15px; box-shadow:0 0 15px rgba(0,0,0,0.3);">
+    <span class="close-btn" onclick="document.getElementById('order-form-popup').style.display='none'" style="float:right; cursor:pointer; font-size:24px;">&times;</span>
+    <h3>Order Details</h3>
+    <form onsubmit="confirmOrder(event)">
+        <input type="text" id="custName" placeholder="Full Name" required style="width:100%; margin-bottom:10px; padding:10px;">
+        <input type="tel" id="custMobile" placeholder="Phone Number" required style="width:100%; margin-bottom:10px; padding:10px;">
+        <textarea id="custAddress" placeholder="Full Address" required style="width:100%; margin-bottom:10px; padding:10px;"></textarea>
+        <select id="paymentMethod" style="width:100%; margin-bottom:10px; padding:10px;">
+            <option value="COD">Cash on Delivery (COD)</option>
+            <option value="UPI">UPI / Online</option>
+        </select>
+        <button type="submit" style="width:100%; padding:12px; background:#ff9aa2; color:white; border:none; border-radius:8px; cursor:pointer;">Submit Order</button>
+    </form>
+</div>
+
+</body>
